@@ -1,0 +1,228 @@
+.appContainer {
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  direction: rtl;
+}
+
+.appTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #222;
+  text-align: right;
+}
+
+/* ======================
+   DAY FILTER BAR
+====================== */
+
+.dayBar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.dayButton {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.2s ease;
+}
+
+.dayButton:hover {
+  background: #f0f0f0;
+}
+
+.active {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  color: white;
+}
+
+/* ======================
+   GARDEN LIST
+====================== */
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  text-align: right;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.address {
+  font-size: 14px;
+  color: #666;
+}
+
+.lastVisit {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* ======================
+   NAVIGATE BUTTON
+====================== */
+
+.navButton {
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 6px 14px;
+  font-size: 14px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.navButton:hover {
+  background: #4338ca;
+}
+
+/* ======================
+   IMAGE
+====================== */
+
+.imageWrapper {
+  min-width: 110px;
+  max-width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ======================
+   RESPONSIVE
+====================== */
+
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 180px;
+  }
+
+  .navButton {
+    width: 100%;
+    text-align: center;
+  }
+}
+.button {
+
+  margin-top: 1rem;
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  width: auto;
+  align-self: flex-start;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.button:hover {
+  background: #45a049;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+.control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.addGardenButton {
+  background: #4caf50;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.formContainer {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  direction: rtl;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+
+.input {
+  padding: 10px 12px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.backButton {
+  background: #ddd;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 16px;
+}

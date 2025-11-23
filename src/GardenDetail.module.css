@@ -1,0 +1,382 @@
+.container {
+  padding: 24px;
+  font-family: "Inter", sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  color: #222;
+}
+
+.section {
+  background: #fafbff;
+  border: 1px solid #eef1fb;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.section:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.label {
+  font-weight: 600;
+  color: #333;
+}
+
+.value {
+  margin-left: 6px;
+  color: #555;
+}
+
+.image {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 12px;
+  margin-top: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.logsTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 10px 0 14px;
+}
+.logHeader {
+  background: #ffffff;
+  padding: 20px 14px;
+  border-radius: 10px;
+  margin-bottom: 0; /* remove extra gap */
+  text-align: right;
+  cursor: pointer; /* show it's clickable */
+}
+
+
+.logItem {
+  background: #ffffff;
+  border: 1px solid #e5e9f5;
+  border-radius: 14px;
+  padding: 0; /* remove default padding */
+  margin-bottom: 16px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s ease;
+  overflow: hidden; /* prevents inner content from overflowing */
+}
+.logItem:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+.logContent {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.logDate {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d4dff;
+}
+
+.logTasksTitle {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 15px;
+  text-align: right;
+}
+
+.taskList {
+  margin: 0;
+  padding-left: 20px;
+  color: #444;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.addLogButton {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.addLogButton:hover {
+  background: #43a047;
+}
+.deleteButton {
+  background: #ff5252;
+  color: white;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+.deleteButton:hover {
+  background: #e04646;
+  transform: scale(1.07);
+}
+.deleteButtonSmall {
+  position: absolute;
+  top: 10px;
+  left: 10px; /* RTL friendly */
+  background: #ff5252;
+  color: white;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+.deleteButtonSmall:hover {
+  background: #e04646;
+  transform: scale(1.07);
+}
+
+.notesList {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.notesList li {
+  margin-bottom: 4px;
+}.addNoteButton {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.addNoteButton:hover {
+  background: #4338ca;
+}.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* spacing between notes */
+  margin-top: 10px;
+  padding: 0;
+}
+
+.noteItem {
+    display: flex;
+    justify-content: space-between;
+  background: #ffffff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* soft shadow for depth */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+/* GardenDetail.module.css */
+
+/* Wrapper for the input and button */
+.noteInputWrapper {
+  display: flex;
+  gap: 8px; /* space between input and button */
+  margin-top: 8px;
+}
+
+/* The input itself */
+.noteInput {
+  flex: 1; /* take up remaining space */
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Nice focus effect */
+.noteInput:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Save button */
+.saveNoteButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.saveNoteButton:hover {
+  background-color: #45a049;
+}
+
+/* Optional: add subtle shadow to input wrapper */
+.noteInputWrapper {
+  background-color: #f9f9f9;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* ------------------------
+   VISIT LOG FORM STYLING
+------------------------- */
+
+.visitForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* spacing between fields */
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.visitForm label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Textarea specific tweaks */
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Reuse saveNoteButton style */
+.saveNoteButton {
+  align-self: flex-start; /* button fits nicely to the left */
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.saveNoteButton:hover {
+  background-color: #45a049;
+}
+.gardenImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 300px; /* adjust as needed */
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #ccc; /* placeholder background if image is missing */
+}
+
+.gardenImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes sure the image covers the area without distortion */
+  display: block;
+}
+
+/* Optional placeholder styling */
+.gardenImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* text at bottom */
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.backButton {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #e0e0e0;
+}
+.button {
+  margin-top: 1rem;
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.button:hover {
+  background: #45a049;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+.top{
+  display: flex;
+   justify-content: space-between;
+   align-items: center;
+   
+}
