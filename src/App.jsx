@@ -56,7 +56,7 @@ function App() {
           className={styles.addGardenButton}
           onClick={() => (window.location.href = "/new-garden")}
         >
-          ➕ הוסף גן חדש
+            הוסף גן חדש +
         </button>
       </div>
 

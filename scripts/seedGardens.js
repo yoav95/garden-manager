@@ -1,76 +1,58 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
-// ⚡ Replace with your Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyCHOlJWgmZ3CYCVPJe3K4FjDL0vknku0lg",
-  authDomain: "goldie-a343e.firebaseapp.com",
-  projectId: "goldie-a343e",
-  storageBucket: "goldie-a343e.firebasestorage.app",
-  messagingSenderId: "964011676118",
-  appId: "1:964011676118:web:7e4c3784c708ed366a1477",
-};
+export async function seedGardens() {
+  const sampleNames = [
+    "דונש",
+    "פאגלין 9",
+    "הכובשים",
+    "גן האורנים",
+    "גן שקדיה"
+  ];
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  const sampleAddresses = [
+    "הרצל 12, תל אביב",
+    "אבן גבירול 88, תל אביב",
+    "דב הוז 10, גבעתיים",
+    "ויצמן 40, רמת גן",
+    "שויצמן דגשד"
+  ];
 
-// Example gardens data
-const gardens = [
-  {
-    name: "Roth Garden",
-    lastVisit: "2025-11-15",
-    address: "Haifa, Roth St 12",
-    notes: "Lots of weeds",
-    location: { lat: 32.7940, lng: 34.9896 },
-    imageURL: "https://via.placeholder.com/200",
-    visitLogs: [
-      {
-        date: "2025-11-01",
-        tasks: ["Weeded flower beds", "Pruned roses", "Watered garden"],
-        nextVisitTasks: ["Fertilize lawn", "Trim hedges"],
-      },
-      {
-        date: "2025-10-15",
-        tasks: ["Removed dead leaves", "Checked irrigation system"],
-        nextVisitTasks: ["Plant seasonal flowers"],
-      },
-    ],
-  },
-  {
-    name: "Green Valley",
-    lastVisit: "2025-10-20",
-    address: "Tel Aviv, Green St 5",
-    notes: "Needs more watering",
-    location: { lat: 32.0853, lng: 34.7818 },
-    imageURL: "https://via.placeholder.com/200",
-    visitLogs: [
-      {
-        date: "2025-10-05",
-        tasks: ["Watered garden", "Pruned trees"],
-        nextVisitTasks: ["Fertilize plants"],
-      },
-    ],
-  },
-  {
-    name: "Sunny Park",
-    lastVisit: "2025-11-10",
-    address: "Jerusalem, Park Rd 8",
-    notes: "Good condition",
-    location: { lat: 31.7683, lng: 35.2137 },
-    imageURL: "https://via.placeholder.com/200",
-    visitLogs: [],
-  },
-];
+  const days = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
 
-async function seed() {
-  const collectionRef = collection(db, "gardens");
+  const sampleImages = [
+    "/assets/1.jpg",
+    "/assets/2.jpg",
+    "/assets/3.jpg",
+    "/assets/4.jpg",
+    "/assets/5.jpg",
+  ];
 
-  for (const garden of gardens) {
-    await addDoc(collectionRef, garden);
-    console.log(`Added garden: ${garden.name}`);
+  for (let i = 0; i < 5; i++) {
+    const garden = {
+      name: sampleNames[i],
+      address: sampleAddresses[i],
+      day: days[i],
+      imageURL: sampleImages[i],
+      lastVisit: "2025-01-15",
+
+      visits: [
+        {
+          date: "2025-01-15",
+          tasks: ["ניקוי עלים", "השקיה", "בדיקת מערכת טפטוף"],
+          notes: ["הדשא במצב טוב", "עץ אחד נראה יבש"],
+        },
+        {
+          date: "2025-01-02",
+          tasks: ["גיזום שיחים"],
+          notes: ["נראה טוב"],
+        },
+      ],
+    };
+
+    await addDoc(collection(db, "gardens"), garden);
+    console.log(`Created garden ${garden.name}`);
   }
 
-  console.log("All gardens added!");
+  console.log("🌱 Dummy gardens inserted!");
 }
-
-seed();

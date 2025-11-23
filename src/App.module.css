@@ -20,9 +20,9 @@
 
 .dayBar {
   display: flex;
+  flex-wrap: wrap;     /* 🔥 this allows breaking into new lines */
   gap: 8px;
   margin-bottom: 18px;
-  overflow-x: auto;
   padding-bottom: 6px;
 }
 
@@ -39,6 +39,11 @@
 
 .dayButton:hover {
   background: #f0f0f0;
+}
+.dayButton.active {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  color: white;
 }
 
 .active {
@@ -142,6 +147,34 @@
 ====================== */
 
 @media (max-width: 600px) {
+  .addGardenButton {
+  width: 100%;
+}
+  .card {
+    flex-direction: column;     /* stack image + content */
+    align-items: center;        /* center visually */
+  }
+
+  .imageWrapper {
+    width: 100%;                /* full width image */
+    height: 180px;              /* tall enough to look good */
+    max-width: none;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .info {
+    width: 100%;                /* full width text under image */
+    text-align: right;
+    margin-top: 10px;
+  }
+  .control {
+    flex-direction: column;
+  }
   .card {
     flex-direction: column;
   }
@@ -157,7 +190,6 @@
   }
 }
 .button {
-
   margin-top: 1rem;
   background: #4caf50;
   color: white;

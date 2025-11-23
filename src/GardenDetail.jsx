@@ -123,7 +123,7 @@ async function handleAddVisit() {
       <div className={styles.top}>
         <h1 className={styles.title}>{garden.name}</h1>
         <button
-        className={styles.button}
+        className={styles.backButton}
         onClick={() => navigate("/")}
       >
         ← חזור
