@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useGardens } from "./hooks/useGardens";
-import styles from "./app.module.css";
+import styles from "./App.module.css";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "./firebase/config";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
