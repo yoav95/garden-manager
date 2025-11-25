@@ -72,7 +72,7 @@ function App() {
             >
               <div className={styles.imageWrapper}>
                 <img
-                  src={g.imageURL || "/assets/1.jpg"}
+                  src={g.imageURL}
                   className={styles.image}
                   alt={g.name}
                 />
@@ -92,7 +92,7 @@ function App() {
                     className={styles.button}
                     onClick={(e) => {
                       e.stopPropagation();
-                      alert("ניווט בקרוב!");
+                      window.location.href = `https://waze.com/ul?q=${g.locationURL ? g.locationURL : ""}`
                     }}
                   >
                     ניווט

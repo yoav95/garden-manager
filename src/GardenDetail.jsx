@@ -17,6 +17,11 @@ function GardenDetail() {
   const [tasksDone, setTasksDone] = useState("");
   const [nextTasks, setNextTasks] = useState("");
   const [expandedVisit, setExpandedVisit] = useState(null); // store index of expanded visit
+  const [editingDay, setEditingDay] = useState(false);
+const [newDay, setNewDay] = useState("");
+const [editingOutDays, setEditingOutDays] = useState(false);
+const [newOutDays, setNewOutDays] = useState("");
+
   const daysHebrew = {
   sunday: "ראשון",
   monday: "שני",
@@ -109,6 +114,27 @@ async function handleAddVisit() {
   setNextTasks("");
   setAddingVisit(false);
 }
+async function handleUpdateDay() {
+  if (!newDay) return;
+
+  const docRef = doc(db, "gardens", id);
+
+  await updateDoc(docRef, { day: newDay });
+
+  setGarden(prev => ({ ...prev, day: newDay }));
+  setEditingDay(false);
+}
+async function handleUpdateOutDays() {
+  if (!newOutDays.trim()) return;
+
+  const docRef = doc(db, "gardens", id);
+
+  await updateDoc(docRef, { outDays: newOutDays });
+
+  setGarden(prev => ({ ...prev, outDays: newOutDays }));
+  setEditingOutDays(false);
+}
+
 
 
   async function handleDeleteVisit(index) {
@@ -135,7 +161,7 @@ async function handleAddVisit() {
       <div className={styles.section}>
         <div className={styles.gardenImageWrapper}>
           {garden.imageURL ? (
-            <img src="/assets/1.jpg" alt={garden.name} className={styles.gardenImage} />
+            <img src={garden.imageURL} alt={garden.name} className={styles.gardenImage} />
           ) : (
             <div className={styles.gardenImagePlaceholder}>No Image</div>
           )}
@@ -154,11 +180,93 @@ async function handleAddVisit() {
 </p>
 
 
-        <p>
-  <strong>יום:</strong> {daysHebrew[garden.day] || garden.day}
-</p>
-        <p>
-          <strong>ימי הוצאה:</strong> {garden.outDays}        </p>
+   <div className={styles.sectionRow}>
+  <p>
+    <strong>יום:</strong> {daysHebrew[garden.day] || garden.day}
+  </p>
+
+  {!editingDay && (
+    <button 
+      className={styles.buttonSmall} 
+      onClick={() => {
+        setNewDay(garden.day);
+        setEditingDay(true);
+      }}
+    >
+      ערוך יום
+    </button>
+  )}
+</div>
+
+{editingDay && (
+  <div className={styles.editDayWrapper}>
+    <select 
+      className={styles.input}
+      value={newDay} 
+      onChange={(e) => setNewDay(e.target.value)}
+    >
+      <option value="sunday">ראשון</option>
+      <option value="monday">שני</option>
+      <option value="tuesday">שלישי</option>
+      <option value="wednesday">רביעי</option>
+      <option value="thursday">חמישי</option>
+    </select>
+
+    <button className={styles.saveNoteButton} onClick={handleUpdateDay}>
+      שמור
+    </button>
+    <button 
+      className={styles.deleteButtonSmall} 
+      style={{ marginLeft: 8 }} 
+      onClick={() => setEditingDay(false)}
+    >
+      ביטול
+    </button>
+  </div>
+)}
+
+       <div className={styles.sectionRow}>
+  <p>
+    <strong>ימי הוצאה:</strong> {garden.outDays}
+  </p>
+
+  {!editingOutDays && (
+    <button
+      className={styles.buttonSmall}
+      onClick={() => {
+        setNewOutDays(garden.outDays || "");
+        setEditingOutDays(true);
+      }}
+    >
+      ערוך
+    </button>
+  )}
+</div>
+
+{editingOutDays && (
+  <div className={styles.editDayWrapper}>
+    <input
+      type="text"
+      className={styles.input}
+      placeholder="לדוגמה: ראשון ורביעי"
+      value={newOutDays}
+      onChange={(e) => setNewOutDays(e.target.value)}
+    />
+
+    <button className={styles.saveNoteButton} onClick={handleUpdateOutDays}>
+      שמור
+    </button>
+
+    <button
+      className={styles.deleteButtonSmall}
+      style={{ marginLeft: 8 }}
+      onClick={() => setEditingOutDays(false)}
+    >
+      ביטול
+    </button>
+  </div>
+)}
+
         <button className={styles.button}>
           נווט לגינה
         </button>

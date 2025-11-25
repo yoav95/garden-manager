@@ -27,17 +27,14 @@ export default function NewGarden() {
 
 async function handleSubmit(e) {
   e.preventDefault();
-
+const encodedAddress = encodeURIComponent(address);
   const newGarden = {
     name,
     address,
     day,
     outDays,
     imageURL,
-    location: {
-  lat: isNaN(parseFloat(lat)) ? 0 : parseFloat(lat),
-  lng: isNaN(parseFloat(lng)) ? 0 : parseFloat(lng),
-},
+    locationURL: `https://waze.com/ul?q=${encodedAddress}`,
     lastVisit: null,
     notes: [],
     visitLogs: [],
@@ -96,34 +93,16 @@ async function handleSubmit(e) {
   onChange={(e) => setOutDays(e.target.value)}
   placeholder="לדוגמה: א, ג, ד"
 />
-<label>קו רוחב (Latitude)</label>
-<input
-  className={styles.input}
-  type="number"
-  step="any"
-  value={lat}
-  required
-  onChange={(e) => setLat(e.target.value)}
-/>
-
-<label>קו אורך (Longitude)</label>
-<input
-  className={styles.input}
-  type="number"
-  step="any"
-  value={lng}
-  required
-  onChange={(e) => setLng(e.target.value)}
-/>
 
 
 
-          <label>תמונה (URL)</label>
+
+          {/* <label>תמונה (URL)</label>
           <input
             className={styles.input}
             value={imageURL}
             onChange={(e) => setImageURL(e.target.value)}
-          />
+          /> */}
 
           <button className={styles.button} type="submit">
             שמור גן
