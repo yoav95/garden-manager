@@ -52,7 +52,7 @@ const encodedAddress = encodeURIComponent(address);
 
   return (
     <div className={styles.appContainer}>
-      <h1 className={styles.appTitle}>הוסף גן חדש</h1>
+      <h1 className={styles.appTitle}>הוסף גינה חדשה</h1>
 
       <div className={styles.card} style={{ cursor: "default" }}>
         <form className={styles.form} onSubmit={handleSubmit}>

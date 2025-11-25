@@ -83,13 +83,12 @@ function App() {
                 <div className={styles.address}>{g.address}</div>
                 <div className={styles.lastVisit}>
                   ביקור אחרון:{" "}
-                  <strong>
-                    {g.lastVisit ? formatDate(g.lastVisit) : "אין ביקורים עדיין"}
-                  </strong>
+                  {g.lastVisit ? <p className={styles.okVisit}>{formatDate(g.lastVisit)}</p> : <p className={styles.noVisit}>אין ביקורים עדיין</p>}
+                 
                 </div>
                 <div className={styles.cardButtons}>
                   <button
-                    className={styles.button}
+                    className={styles.navButton}
                     onClick={(e) => {
                       e.stopPropagation();
                       window.location.href = `https://waze.com/ul?q=${g.locationURL ? g.locationURL : ""}`

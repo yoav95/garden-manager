@@ -267,8 +267,11 @@ async function handleUpdateOutDays() {
   </div>
 )}
 
-        <button className={styles.button}>
-          נווט לגינה
+        <button className={styles.navButton} onClick={(e) => {
+                      e.stopPropagation();
+                      window.location.href = `https://waze.com/ul?q=${garden.locationURL ? garden.locationURL : ""}`
+                    }}>
+          ניווט
         </button>
 
         

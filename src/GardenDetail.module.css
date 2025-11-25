@@ -2,6 +2,7 @@
   padding: 24px;
   font-family: "Inter", sans-serif;
   max-width: 700px;
+  background-color: #FAFAFA;
   margin: 0 auto;
 }
 
@@ -20,7 +21,22 @@
   border-radius: 10px;
   margin-bottom: 12px;
 }
+.navButton {
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 8px 14px;
+  font-size: 15px;
+  border: none;
+  background: #5d56df;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
+.navButton:hover {
+  background: #4338ca;
+}
 .section:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
