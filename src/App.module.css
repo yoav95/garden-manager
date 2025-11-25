@@ -5,7 +5,7 @@
   margin: 0 auto;
   direction: rtl;
   color:#222;
-  background-color: #FAFAFA;
+  background-color:#e4e3f2;
 }
 
 .appTitle {
@@ -143,6 +143,39 @@ margin-right: 5px;
 
 .navButton:hover {
   background: #4338ca;
+}
+
+/* ======================
+   FLOATING ADD BUTTON
+====================== */
+
+.fabAdd {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  background:#45a049;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  z-index: 999;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.fabAdd:hover {
+  background: #4d46c9;
+}
+
+.fabAdd:active {
+  transform: scale(0.92);
 }
 
 /* ======================

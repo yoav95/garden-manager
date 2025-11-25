@@ -53,11 +53,11 @@ function App() {
           </button>
         </div>
         <button
-          className={styles.addGardenButton}
-          onClick={() => (window.location.href = "/new-garden")}
-        >
-            הוסף גן חדש +
-        </button>
+  className={styles.fabAdd}
+  onClick={() => (window.location.href = "/new-garden")}
+>
+  +
+</button>
       </div>
 
       {gardens.length === 0 ? (
