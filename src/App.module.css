@@ -111,7 +111,7 @@ html, body {
   gap: 6px;
 }
 
-.tasksBadge {
+.tasksButton.tasksBadge {
   background: #ef4444; /* subtle red */
   color: white;
   font-size: 12px;
@@ -245,6 +245,15 @@ margin-right: 5px;
 ====================== */
 
 @media (max-width: 600px) {
+  .appContainer {
+  padding: 10px 0;
+  font-family: "Inter", sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  direction: rtl;
+  color:#222;
+  
+}
   .addGardenButton {
   width: 100%;
 }
@@ -392,7 +401,7 @@ margin-right: 5px;
 /* Hover (desktop only, still safe on mobile) */
 .gardenViewButton:hover,
 .tasksViewButtom:hover {
-  background: #e9ecef;
+  background: #299a62;
 }
 
 /* ACTIVE STATE */

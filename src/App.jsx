@@ -5,6 +5,8 @@ import { collection, onSnapshot } from "firebase/firestore";import { db } from "
 import { useState,useEffect } from "react";
 import GardenView from "./GardenView";
 import TasksView from "./TasksView";
+import { findArea } from "./utils/findArea.js";
+import AreasMap from "./AreasMap.jsx";
 
 const days = ["sunday", "monday", "tuesday", "wednesday", "thursday"];
 const daysHebrew = {
@@ -24,6 +26,29 @@ function App() {
   const visibleGardens = selectedDay
     ? gardens.filter((g) => g.day === selectedDay)
     : gardens;
+
+    const shoot = () => {
+      alert("shoot")
+      navigator.geolocation.getCurrentPosition(
+  (position) => {
+    const lat = position.coords.latitude;
+    const lng = position.coords.longitude;
+
+    console.log("Lat:", lat, "Lng:", lng);
+
+    const areas = findArea(32.08829025401586, 34.77787713994375);
+    console.log(areas);
+  },
+  (error) => {
+    console.error("Geolocation error:", error.message);
+  },
+  {
+    enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0,
+  }
+);
+    }
 
   function formatDate(dateString) {
     if (!dateString) return "";
@@ -52,7 +77,7 @@ function App() {
   >
     גינות
   </button>
-
+<button className={styles.gardenViewButton} onClick={() => {setView("map")}}>מפה</button>
    <button
           className={`${styles.tasksViewButtom} ${view === "tasks" ? styles.active : ""}`}
           onClick={() => setView("tasks")}
@@ -64,9 +89,13 @@ function App() {
   </span>
 )}
         </button>
+        
 </div>
 
-      {view === "gardens" ? <GardenView /> : <TasksView />}
+      {view === "gardens" && <GardenView />}
+      {view === "tasks" && <TasksView />}
+      {view === "map" && <AreasMap />}
+      {/* <AreasMap /> */}
     </div>
   );
 }

@@ -34,6 +34,14 @@ html, body {
   color:#222;
   text-align: right;
 }
+.gardenDot {
+  width: 28px;
+  height: 28px;
+  background-color: #45a049;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
 
 /* ======================
    DAY FILTER BAR
@@ -44,12 +52,12 @@ html, body {
   flex-wrap: wrap;     /* 🔥 this allows breaking into new lines */
   gap: 8px;
   margin-bottom: 18px;
-  padding-bottom: 6px;
 }
 
 .dayButton {
-  padding: 8px 14px;
-  font-size: 14px;
+  padding: 10px 19px;
+  font-size: 15px;
+  font-weight: 500;
   border: 1px solid #ddd;
   background: #f1f1f1;
   border-radius: 10px;
@@ -92,7 +100,6 @@ html, body {
 .thursday {
   color:white;
   background-color: #FFA500;
-  color: black;
 }
 
 /* ======================
@@ -108,14 +115,10 @@ html, body {
   position: relative;
   background: #F8F9FA;
   border-radius: 12px;
-  padding: 14px;
+  padding: 25px 14px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   display: flex;
-  justify-content: space-between;
   gap: 10px;
-  cursor: pointer;
-  transition: transform 0.15s ease;
 }
 
 
@@ -125,11 +128,31 @@ html, body {
 /* GardenView.module.css */
 .dayIndicator {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  border-radius: 0 0 8px 8px;
+  top: 10px;
+  bottom: 10px;
+  left: 10px; /* for RTL */
+  width: 12px;
+  border-radius: 6px;
+}
+
+/* Mobile view: horizontal at the bottom */
+@media (max-width: 600px) {
+  .container {
+  padding: .5rem .4rem;
+  font-family: "Inter", sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  direction: rtl;
+  color:#222;
+}
+  .dayIndicator {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;   /* thinner horizontal bar */
+    border-radius: 0 0 12px 12px;
+  }
 }
 
 /* Example day colors */
@@ -191,14 +214,19 @@ html, body {
 .lastVisit {
   margin-top: 4px;
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap:.5rem;
 }
 .lastVisit .okVisit {
-  margin-right: 5px;
+  margin-right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 120px;
   background-color: #45a049;
-  width: auto;
-  display: inline;
   padding: 6px 10px;
-  font-size: 13px;
+  font-size: 14px;
   border-radius: 5px;
   color:white;
 }
@@ -222,7 +250,7 @@ margin-right: 5px;
   margin-top: 8px;
   align-self: flex-start;
   padding: 6px 14px;
-  font-size: 14px;
+  font-size: 13px;
   border: none;
   background: #5d56df;
   color: white;
@@ -273,6 +301,7 @@ margin-right: 5px;
 ====================== */
 
 .imageWrapper {
+  align-self: flex-start;
   min-width: 110px;
   max-width: 110px;
   height: 110px;
@@ -293,50 +322,77 @@ margin-right: 5px;
 ====================== */
 
 @media (max-width: 600px) {
-  .addGardenButton {
-  width: 100%;
-}
   .card {
-    flex-direction: column;     /* stack image + content */
-    align-items: center; 
-    
-/* center visually */
+    flex-direction: row;         /* image + info side by side */
+    align-items: center;         /* vertically center content */
+    padding: 10px 12px;          /* smaller padding */
+    gap: 1rem;                    /* smaller gap */
+    min-height: 90px;            /* smaller min-height */
+    border-radius: 10px;
   }
+  .lastVisit {
+  display: flex;
+  flex-direction: column;
+  gap:.5rem;
+  padding: 0;
+  margin:0;
+}
+.okVisit {
+  margin: 0!important;
+  background-color: #45a049;
+  max-width: 120px;
+  display: inline-block;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 5px;
+  color:white;
+
+}
 
   .imageWrapper {
-    width: 100%;                /* full width image */
-    height: 180px;              /* tall enough to look good */
-    max-width: none;
-  }
-
-  .image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width:80px ;
+    height: 120px;   
+    border-radius: 8px;
+    flex-shrink: 0;
   }
 
   .info {
-    width: 100%;                /* full width text under image */
-    text-align: right;
-    margin-top: 10px;
-  }
-  .control {
+    /* padding-top: 1rem; */
+    flex: 1;                     /* take remaining space */
+    display: flex;
     flex-direction: column;
-  }
-  .card {
-    flex-direction: column;
+    gap: .5rem;                    /* smaller gap between lines */
   }
 
-  .imageWrapper {
-    width: 100%;
-    height: 180px;
+  .title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .address, .lastVisit {
+    font-size: 12px;
+    color: #555;
   }
 
   .navButton {
+    padding: 6px 9px;
+    font-size: 12px;
+    margin:1rem;
+    align-self: flex-end;
+  }
+
+  /* Day indicator at bottom of card */
+  .dayIndicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    text-align: center;
+    height: 8px;
+    border-radius: 0 0 10px 10px;
   }
 }
+
+
 .button {
   margin-top: 1rem;
   background: #4caf50;

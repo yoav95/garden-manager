@@ -76,46 +76,47 @@ function GardenView() {
       ) : (
         <ul className={styles.list}>
           {visibleGardens.map((g) => (
-            <li
-              key={g.id}
-              className={styles.card}
-              onClick={() => (window.location.href = `/garden/${g.id}`)}
-            >
-              <div className={`${styles.dayIndicator} ${styles[`day${g.day.charAt(0).toUpperCase() + g.day.slice(1)}`]}`}></div>
-              
-              <div className={styles.imageWrapper}>
-                <img
-                  src={g.imageURL}
-                  className={styles.image}
-                  alt={g.name}
-                />
-              </div>
+           <li
+  key={g.id}
+  className={styles.card}
+  onClick={() => (window.location.href = `/garden/${g.id}`)}
+>
+  <div className={`${styles.dayIndicator} ${styles[`day${g.day.charAt(0).toUpperCase() + g.day.slice(1)}`]}`}></div>
 
-              <div className={styles.info}>
-                
-                <div className={styles.title}>{g.name}</div>
-                <div className={styles.address}>{g.address}</div>
-                <div className={styles.lastVisit}>
-                  ביקור אחרון:{" "}
-                  {g.lastVisit ? <p className={styles.okVisit}>{formatDate(g.lastVisit)}</p> : <p className={styles.noVisit}>אין ביקורים עדיין</p>}
-                 
-                </div>
-                <div className={styles.cardButtons}>
-                  <button
-                    className={styles.navButton}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.location.href = `https://waze.com/ul?q=${g.locationURL ? g.locationURL : ""}`
-                    }}
-                  >
-                    ניווט
-                  </button>
-                  
+  <div className={styles.imageWrapper}>
+    <img
+      src={g.imageURL}
+      className={styles.image}
+      alt={g.name}
+    />
+  </div>
 
-                </div>
-              </div>
-              
-            </li>
+  <div className={styles.info}>
+    <div className={styles.title}>{g.name}</div>
+    <div className={styles.address}>{g.address}</div>
+    <div className={styles.lastVisit}>
+      ביקור אחרון:{" "}
+      {g.lastVisit ? (
+        <p className={styles.okVisit}>{formatDate(g.lastVisit)}</p>
+      ) : (
+        <p className={styles.noVisit}>אין ביקורים עדיין</p>
+      )}
+    </div>
+    <div className={styles.cardButtons}>
+      <button
+        className={styles.navButton}
+        onClick={(e) => {
+          e.stopPropagation();
+          window.location.href = `https://waze.com/ul?q=${g.locationURL ? g.locationURL : ""}`;
+        }}
+      >
+        ניווט
+      </button>
+    </div>
+  </div>
+</li>
+
+
           ))}
         </ul>
       )}

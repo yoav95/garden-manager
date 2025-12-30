@@ -1,0 +1,158 @@
+/* ============================
+   GARDEN DOT ICONS
+============================ */
+.gardenDot {
+  width: 28px;
+  height: 28px;
+  background-color: #45a049;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* Optional colors for days */
+.daySunday { background-color: #FF6B6B; }
+.dayMonday { background-color: #4ECDC4; }
+.dayTuesday { background-color: #dcb611; }
+.dayWednesday { background-color: #6A4C93; }
+.dayThursday { background-color: #FFA500; }
+
+/* ============================
+   POPUP CARD
+============================ */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #F8F9FA;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 200px;
+  max-width: 280px;
+  cursor: default;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.card:hover {
+  filter: brightness(1.05);
+}
+
+/* IMAGE */
+.imageWrapper {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* INFO */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right; /* RTL */
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.address {
+  font-size: 14px;
+  color: #666;
+}
+
+.lastVisit {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.okVisit {
+  display: inline-block;
+  max-width: 120px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: white;
+  background-color: #45a049;
+  border-radius: 5px;
+}
+
+.noVisit {
+  display: inline-block;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #222;
+  background-color: #ECECEC;
+  border-radius: 5px;
+}
+
+/* BUTTONS */
+.navButton {
+  padding: 6px 12px;
+  font-size: 13px;
+  color: white;
+  background: #5d56df;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.navButton:hover {
+  background: #4338ca;
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .imageWrapper {
+    height: 100px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .address,
+  .lastVisit {
+    font-size: 12px;
+  }
+
+  .navButton {
+    padding: 5px 10px;
+    font-size: 12px;
+    flex: 1;
+  }
+
+  .buttonsWrapper {
+    flex-direction: column; /* stack buttons on mobile */
+  }
+}
+.daySunday { background-color: #FF6B6B; }
+.dayMonday { background-color: #4ECDC4; }
+.dayTuesday { background-color: #dcb611; }
+.dayWednesday { background-color: #6A4C93; }
+.dayThursday { background-color: #FFA500; }
