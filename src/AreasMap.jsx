@@ -12,6 +12,28 @@ const israelCenterBounds = [
   [32.4, 34.7], // north-west corner (Netanya area)
   [32.0, 35.0], // south-east corner (Tel Aviv / Petah Tikva)
 ];
+const areaColors = {
+  A: "#1e90ff",
+  B: "#ff9f1c",
+  C: "#ffd93d",
+  D: "#6a4c93",
+  E: "#1e90ff",
+  F: "#ff9f1c",
+  G: "#2ec4b6",
+  H: "#e71d36",
+};
+
+const wasteDaysByArea = {
+  A: "שני, רביעי",
+  B: "ראשון, שלישי",
+  C: "שלישי",
+  D: "רביעי",
+  E: "חמישי",
+  F: "שישי",
+  G: "שבת",
+  H: "ראשון",
+};
+
 export default function AreasMap() {
   const [gardensGeoJson, setGardensGeoJson] = useState(null);
 
@@ -43,6 +65,7 @@ export default function AreasMap() {
     <MapContainer
       bounds={israelCenterBounds}
   style={{ height: "500px", width: "100%" }} // you can set smaller height for mobile
+  
   scrollWheelZoom={false} // optional: prevent zooming
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -50,11 +73,40 @@ export default function AreasMap() {
       {/* Areas polygons */}
       <GeoJSON
         data={areasGeoJson}
-        style={{
-          color: "#0066ff",
-          weight: 2,
+        style={(feature) => ({
+  color: areaColors[feature.properties.area],
+  fillColor: areaColors[feature.properties.area],
+  fillOpacity: 0.35,
+  weight: 2,
+})}
+ onEachFeature={(feature, layer) => {
+    const area = feature.properties.area;
+    const wasteDays = wasteDaysByArea[area] ?? "לא ידוע";
+
+    layer.bindTooltip(
+      `אזור ${area} – ימי פינוי: ${wasteDays}`,
+      {
+        sticky: true,
+        direction: "top",
+        className: "areaTooltip",
+      }
+    );
+
+    layer.on({
+      mouseover: (e) => {
+        e.target.setStyle({
+          fillOpacity: 0.45,
+          weight: 3,
+        });
+      },
+      mouseout: (e) => {
+        e.target.setStyle({
           fillOpacity: 0.2,
-        }}
+          weight: 2,
+        });
+      },
+    });
+  }}
       />
 
       {/* Gardens points */}
@@ -72,47 +124,48 @@ export default function AreasMap() {
 
         return (
           <Marker key={props.id} position={[lat, lng]} icon={gardenDotIcon}>
-  <Popup minWidth={200} maxWidth={280}>
-  <div className={styles.card}>
-    <div className={styles.imageWrapper}>
-      <img src={props.imageURL} className={styles.image} alt={props.name} />
-    </div>
+  <Popup minWidth={180} maxWidth={240} closeButton={false}>
+  <div
+    className={styles.popup}
+    role="button"
+    onClick={() => {
+      window.location.href = `/garden/${props.id}`;
+    }}
+  >
+    {props.imageURL && (
+      <img
+        src={props.imageURL}
+        className={styles.popupImage}
+        alt={props.name}
+      />
+    )}
 
-    <div className={styles.info}>
-      <div className={styles.title}>{props.name}</div>
-      <div className={styles.address}>{props.address}</div>
-      <div className={styles.lastVisit}>
-        {props.lastVisit ? (
-          <p className={styles.okVisit}>{formatDate(props.lastVisit)}</p>
-        ) : (
-          <p className={styles.noVisit}>אין ביקורים עדיין</p>
-        )}
-      </div>
+    <div className={styles.popupContent}>
+      <div className={styles.popupTitle}>{props.name}</div>
+      <div className={styles.popupAddress}>{props.address}</div>
 
-      <div className={styles.buttonsWrapper}>
+      <div className={styles.popupFooter}>
+        <span className={styles.popupDate}>
+          {props.lastVisit ? formatDate(props.lastVisit) : "אין ביקורים"}
+        </span>
+
         <button
-          className={styles.navButton}
+          className={styles.popupNav}
           onClick={(e) => {
-            e.stopPropagation();
-            window.open(`https://waze.com/ul?q=${props.locationURL ?? ""}`, "_blank");
+            e.stopPropagation(); // 👈 prevent redirect
+            window.open(
+              `https://waze.com/ul?q=${props.locationURL ?? ""}`,
+              "_blank"
+            );
           }}
         >
           ניווט
-        </button>
-
-        <button
-          className={styles.navButton}
-          onClick={(e) => {
-            e.stopPropagation();
-            window.location.href = `/garden/${props.id}`;
-          }}
-        >
-          פרטים
         </button>
       </div>
     </div>
   </div>
 </Popup>
+
 </Marker>
 
         );
