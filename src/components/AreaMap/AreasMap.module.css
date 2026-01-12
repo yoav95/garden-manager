@@ -268,3 +268,65 @@
 }
 
 
+
+.gardenDotWrapper {
+  position: relative;
+  width: 19px;
+  height: 19px;
+}
+
+.hasIssue {
+  box-shadow: 0 0 0 2px #e63946;
+}
+
+.issueBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  background: #e63946;
+  color: white;
+  font-size: 13px;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  pointer-events: none;
+}.popupIssues {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #eee;
+}
+
+.popupIssuesTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e63946;
+  margin-bottom: 4px;
+}
+
+.popupIssuesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popupIssueItem {
+  font-size: 12px;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.popupIssueText {
+  display: block;
+  font-weight: 500;
+}
+
+.popupIssueDate {
+  font-size: 11px;
+  color: #777;
+}

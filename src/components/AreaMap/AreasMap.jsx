@@ -33,6 +33,12 @@ const wasteDaysByArea = {
   G: "שבת",
   H: "ראשון",
 };
+function formatFirestoreDate(ts) {
+  if (!ts?.seconds) return "";
+  const d = new Date(ts.seconds * 1000);
+  return d.toLocaleDateString("en-GB"); // dd/mm/yyyy
+}
+
 
 function getPolygonCenter(layer) {
   // L.Polygon provides getBounds(), we can use getCenter()
@@ -127,30 +133,50 @@ export default function AreasMap() {
       {gardensGeoJson?.features.map(feature => {
         const [lng, lat] = feature.geometry.coordinates;
         const props = feature.properties;
+        
+        
  const dayClass = props.day
     ? styles[`day${props.day.charAt(0).toUpperCase() + props.day.slice(1)}`]
     : "";
-  const gardenDotIcon = new L.DivIcon({
+
+    const unresolvedIssues = Array.isArray(props.requiresAttention)
+  ? props.requiresAttention.filter(issue => !issue.resolved)
+  : [];
+
+    const hasUnresolvedIssues = unresolvedIssues.length > 0;
+
+
+
+
+
+const gardenDotIcon = new L.DivIcon({
   className: styles.gardenMarker,
   html: `
-    <div class="${styles.gardenDot} ${dayClass}"></div>
-  <div class="${styles.gardenLabel}">
-    <div class="${styles.gardenTitle}">${props.name}</div>
-    <div class="${styles.gardenLastVisit}">
-      ${props.lastVisit ? formatDate(props.lastVisit) : "אין ביקורים"}
+    <div class="${styles.gardenDotWrapper}">
+      <div class="${styles.gardenDot} ${dayClass} ${
+        hasUnresolvedIssues ? styles.hasIssue : ""
+      }"></div>
+      ${
+        hasUnresolvedIssues
+          ? `<div class="${styles.issueBadge}">!</div>`
+          : ""
+      }
     </div>
-  </div>
+
+    <div class="${styles.gardenLabel}">
+      <div class="${styles.gardenTitle}">${props.name}</div>
+      <div class="${styles.gardenLastVisit}">
+        ${props.lastVisit ? formatDate(props.lastVisit) : "אין ביקורים"}
+      </div>
+    </div>
   `,
-  iconSize: null, // Let CSS control the size
-  iconAnchor: [14, 14], // Center the dot on the coordinate
+  iconSize: null,
+  iconAnchor: [14, 14],
 });
-
-
-
 
         return (
           <Marker key={props.id} position={[lat, lng]} icon={gardenDotIcon}>
-  <Popup minWidth={180} maxWidth={240} closeButton={false}>
+  <Popup minWidth={180} maxWidth={260} closeButton={false}>
   <div
     className={styles.popup}
     role="button"
@@ -170,6 +196,30 @@ export default function AreasMap() {
       <div className={styles.popupTitle}>{props.name}</div>
       <div className={styles.popupAddress}>{props.address}</div>
 
+      {/* 🔥 ISSUES – ONLY IF EXIST */}
+      {hasUnresolvedIssues && (
+        <div className={styles.popupIssues}>
+          <div className={styles.popupIssuesTitle}>
+            ⚠️ בעיות פתוחות
+          </div>
+
+          <ul className={styles.popupIssuesList}>
+            {unresolvedIssues.map((issue, idx) => (
+              <li key={idx} className={styles.popupIssueItem}>
+                <span className={styles.popupIssueText}>
+                  {issue.text}
+                </span>
+                {issue.createdAt && (
+                  <span className={styles.popupIssueDate}>
+                    {formatFirestoreDate(issue.createdAt)}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className={styles.popupFooter}>
         <span className={styles.popupDate}>
           {props.lastVisit ? formatDate(props.lastVisit) : "אין ביקורים"}
@@ -178,7 +228,7 @@ export default function AreasMap() {
         <button
           className={styles.popupNav}
           onClick={(e) => {
-            e.stopPropagation(); // 👈 prevent redirect
+            e.stopPropagation();
             window.open(
               `https://waze.com/ul?q=${props.locationURL ?? ""}`,
               "_blank"
@@ -191,6 +241,8 @@ export default function AreasMap() {
     </div>
   </div>
 </Popup>
+
+
 
 </Marker>
 
