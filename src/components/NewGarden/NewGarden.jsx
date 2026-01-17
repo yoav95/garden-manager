@@ -59,7 +59,15 @@ export default function NewGarden() {
 
   return (
     <div className={styles.appContainer}>
-      <h1 className={styles.appTitle}>הוסף גינה חדשה</h1>
+      <div className={styles.top}>
+        <h1 className={styles.appTitle}>הוסף גינה חדשה</h1>
+      <button
+  className={styles.backButton}
+  onClick={() => (window.location.href = "/")}
+>
+  ← חזרה
+</button>
+      </div>
       <div className={styles.card} style={{ cursor: "default" }}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label>שם הגינה</label>
@@ -107,13 +115,8 @@ export default function NewGarden() {
         </form>
       </div>
 
-      <button
-        className={styles.button}
-        onClick={() => (window.location.href = "/")}
-        style={{ background: "#999", marginTop: "16px" }}
-      >
-        ← חזרה
-      </button>
+      
+
     </div>
   );
 }

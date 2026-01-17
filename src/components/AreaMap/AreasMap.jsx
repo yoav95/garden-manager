@@ -76,11 +76,10 @@ export default function AreasMap() {
 
   return (
     <MapContainer
-      bounds={israelCenterBounds}
-  style={{ height: "500px", width: "100%" }} // you can set smaller height for mobile
-  
-  scrollWheelZoom={false} // optional: prevent zooming
-    >
+  bounds={israelCenterBounds}
+  style={{ height: "70vh", width: "100%" }}
+  scrollWheelZoom={false}
+>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
       {/* Areas polygons */}

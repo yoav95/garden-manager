@@ -1,106 +1,140 @@
 /* ============================
-   GLOBAL RESET (component-specific)
+   BASE
 ============================ */
 :global(*) {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-.container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+.appContainer {
+  min-height: 100vh;
+  /* background: #f2f4f7; */
+  padding: 24px 16px;
   direction: rtl;
-  color: #222;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #1f2933;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  flex-direction: column;
+  max-width: 900px;
+  margin:0 auto;
 }
 
-.title {
-  font-size: 28px;
+.appTitle {
+  font-size: 26px;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin: 0;
   text-align: right;
 }
 
 /* ============================
-   FORM CARD
+   CARD
 ============================ */
 .card {
-  background: #f8f9fa;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  cursor: default;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  width: 100%;
 }
 
+/* ============================
+   FORM
+============================ */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+}
+.top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 👈 spread */
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
 }
 
 .input,
 select {
-  padding: 10px 12px;
-  border: 1px solid #bbb;
-  border-radius: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
   font-size: 15px;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+.input:focus,
+select:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+}
+
+/* ============================
+   BUTTONS
+============================ */
 .button {
-  margin-top: 1rem;
+  margin-top: 20px;
   background: #4caf50;
   color: white;
   border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  width: auto;
   align-self: flex-start;
-  white-space: nowrap;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
 
 .button:hover {
-  background: #45a049;
+  background: #43a047;
 }
 
 .button:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
-/* BACK BUTTON */
+/* Secondary / Back */
 .backButton {
-  background: #ddd;
-  padding: 10px 16px;
-  border-radius: 8px;
+  /* margin-top: 16px; */
+  background: #ffffff;
+  color: #1e2023;
   border: none;
   cursor: pointer;
-  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-/* RESPONSIVE */
+.backButton:hover {
+  background: #f3f4f6;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
 @media (max-width: 600px) {
-  .container {
-    padding: 10px 0;
+  .appTitle {
+    font-size: 1.3rem;
   }
 
   .card {
-    padding: 12px;
+    padding: 16px;
   }
 
-  .input,
-  select {
-    font-size: 14px;
-    padding: 8px 10px;
-  }
-
-  .button,
-  .backButton {
+  .button
+   {
     width: 100%;
     text-align: center;
   }
+
 }

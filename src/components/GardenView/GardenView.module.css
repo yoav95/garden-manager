@@ -79,27 +79,27 @@ html, body {
 /* Colors for each day */
 .sunday {
   color:white;
-  background-color: #E76F51;
+  background-color: #D9776A;
 }
 
 .monday {
   color:white;
-  background-color: #2A9D8F;
+  background-color: #4F9D8A;
 }
 
 .tuesday {
-  background-color: #E9C46A;
+  background-color: #E0B84F;
   color:white;
 }
 
 .wednesday {
   color:white;
-  background-color: #577590;
+  background-color: #6B7C93;
 }
 
 .thursday {
   color:white;
-  background-color: #D9822B;
+  background-color: #D18B5C;
 }
 
 
@@ -158,11 +158,12 @@ html, body {
 }
 
 /* Example day colors */
-.daySunday { background-color: #E76F51; }
-.dayMonday { background-color: #2A9D8F; }
-.dayTuesday { background-color: #E9C46A; }
-.dayWednesday { background-color: #577590; }
-.dayThursday { background-color: #D9822B; }
+.daySunday    { background-color: #D9776A; } /* muted red */
+.dayMonday    { background-color: #4F9D8A; } /* desaturated teal */
+.dayTuesday   { background-color: #E0B84F; } /* muted amber */
+.dayWednesday { background-color: #6B7C93; } /* blue-gray */
+.dayThursday  { background-color: #D18B5C; } /* soft brown-orange */
+
 
 
 
@@ -252,7 +253,7 @@ margin-right: 5px;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 10px;
-  background-color: rgb(141, 75, 141);
+  background-color: rgb(111, 80, 111);
   color: white;
   margin:.5rem 2rem;
   border: none;
@@ -496,7 +497,7 @@ margin-right: 5px;
   height: 56px;
   border-radius: 50%;
   font-size: 28px;
-  background: #6a4c93;
+  background: #45a049;
   color: white;
   border: none;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
